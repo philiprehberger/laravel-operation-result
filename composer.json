@@ -1,6 +1,6 @@
 {
     "name": "philiprehberger/laravel-operation-result",
-    "description": "Typed Result pattern for Laravel service-layer operations with named factory methods and specialized result types.",
+    "description": "Typed Result pattern for Laravel service-layer operations with named factory methods and specialized result types",
     "keywords": ["laravel", "result", "operation", "service", "pattern", "response"],
     "license": "MIT",
     "authors": [
