@@ -137,11 +137,16 @@ public function store(StoreClientRequest $request, ClientService $service): Json
 #### Additional Methods
 
 ```php
-$result->getModel();         // ?Model
-$result->getData();          // array
+$result->getModel();                   // ?Model
+$result->getData();                    // array
 $result->withData(['key' => 'value']); // returns new instance with merged data
-$result->getErrorCode();     // ?string
-$result->toArray();          // array
+$result->withMessage('New msg');       // returns new instance with updated message
+$result->getOrThrow();                 // Model|array — throws \RuntimeException on failure
+$result->getErrorCode();               // ?string
+$result->isNotFound();                 // bool
+$result->isUnauthorized();             // bool
+$result->isValidationFailed();         // bool
+$result->toArray();                    // array
 ```
 
 ### BulkActionResult
@@ -530,6 +535,56 @@ public function logResult(ResultContract $result): void
 }
 ```
 
+### Type-Checking Helpers
+
+Every result type includes convenience methods for checking common error codes:
+
+```php
+$result = $service->findClient($id);
+
+if ($result->isNotFound()) {
+    abort(404, $result->getMessage());
+}
+
+if ($result->isUnauthorized()) {
+    abort(403, $result->getMessage());
+}
+
+if ($result->isValidationFailed()) {
+    return back()->withErrors($result->getData()['errors'] ?? []);
+}
+```
+
+### Getting Data or Throwing
+
+Use `getOrThrow()` to extract data from a successful result or throw on failure:
+
+```php
+// Returns the model (OperationResult) or null (base Result) on success
+$client = $service->findClient($id)->getOrThrow();
+
+// Throws \RuntimeException with the error message on failure
+try {
+    $model = $service->create($data)->getOrThrow();
+} catch (\RuntimeException $e) {
+    Log::error($e->getMessage());
+}
+```
+
+### Immutable Message Updates
+
+Use `withMessage()` to create a new result instance with a different message:
+
+```php
+$result = $service->create($data);
+
+if ($result->succeeded()) {
+    $result = $result->withMessage('Client was created and synced to CRM.');
+}
+
+return response()->json($result->toArray());
+```
+
 ## API
 
 | Class | Use Case |
@@ -542,6 +597,23 @@ public function logResult(ResultContract $result): void
 | `UndoResult` | Undo operations tracking restored vs failed items |
 
 All classes implement `ResultContract`: `succeeded()`, `failed()`, `getMessage()`, `toArray()`.
+
+### Base Methods (All Result Types)
+
+Every result class inherits these methods from `Result`:
+
+| Method | Returns | Description |
+|---|---|---|
+| `succeeded()` | `bool` | True if the operation succeeded |
+| `failed()` | `bool` | True if the operation failed |
+| `getMessage()` | `string` | The result message |
+| `getErrorCode()` | `?string` | The error code, if any |
+| `isNotFound()` | `bool` | True if error code is `NOT_FOUND` |
+| `isUnauthorized()` | `bool` | True if error code is `UNAUTHORIZED` |
+| `isValidationFailed()` | `bool` | True if error code is `VALIDATION_FAILED` |
+| `getOrThrow()` | `mixed` | Returns data on success, throws `\RuntimeException` on failure |
+| `withMessage(string $message)` | `static` | Returns a new instance with the updated message |
+| `toArray()` | `array` | Array representation of the result |
 
 ## Development
 

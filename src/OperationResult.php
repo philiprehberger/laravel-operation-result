@@ -122,6 +122,36 @@ class OperationResult extends Result
     }
 
     /**
+     * Get the result data or throw on failure.
+     *
+     * Returns the model if present, otherwise the data array.
+     *
+     * @throws \RuntimeException
+     */
+    public function getOrThrow(): mixed
+    {
+        if ($this->failed()) {
+            throw new \RuntimeException($this->message);
+        }
+
+        return $this->model ?? $this->data;
+    }
+
+    /**
+     * Return a new instance with the updated message.
+     */
+    public function withMessage(string $message): static
+    {
+        return new static(
+            success: $this->success,
+            message: $message,
+            errorCode: $this->errorCode,
+            model: $this->model,
+            data: $this->data,
+        );
+    }
+
+    /**
      * Get the model from the result.
      */
     public function getModel(): ?Model

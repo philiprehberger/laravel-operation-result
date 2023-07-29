@@ -177,7 +177,7 @@ parameters:
 		-
 			message: '#^Unsafe usage of new static\(\)\.$#'
 			identifier: new.static
-			count: 9
+			count: 10
 			path: src/OperationResult.php
 
 		-
@@ -191,6 +191,12 @@ parameters:
 			identifier: new.static
 			count: 2
 			path: src/RateLimitResult.php
+
+		-
+			message: '#^Unsafe usage of new static\(\)\.$#'
+			identifier: new.static
+			count: 1
+			path: src/Result.php
 
 		-
 			message: '#^Method PhilipRehberger\\OperationResult\\Result\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'

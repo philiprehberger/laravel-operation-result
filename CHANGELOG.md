@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-03-22
+
+### Added
+- `isNotFound()`, `isUnauthorized()`, `isValidationFailed()` type-checking methods on the base `Result` class
+- `getOrThrow()` method — returns the result data on success, throws `\RuntimeException` on failure
+- `withMessage(string $message)` method — returns a new immutable instance with the updated message
+
 ## [1.0.6] - 2026-03-23
 
 ### Fixed

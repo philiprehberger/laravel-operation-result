@@ -220,4 +220,88 @@ class OperationResultTest extends TestCase
 
         $this->assertSame([], $result->getData());
     }
+
+    public function test_is_not_found_returns_true_for_not_found_error_code(): void
+    {
+        $result = OperationResult::notFound();
+
+        $this->assertTrue($result->isNotFound());
+        $this->assertFalse($result->isUnauthorized());
+        $this->assertFalse($result->isValidationFailed());
+    }
+
+    public function test_is_unauthorized_returns_true_for_unauthorized_error_code(): void
+    {
+        $result = OperationResult::unauthorized();
+
+        $this->assertTrue($result->isUnauthorized());
+        $this->assertFalse($result->isNotFound());
+        $this->assertFalse($result->isValidationFailed());
+    }
+
+    public function test_is_validation_failed_returns_true_for_validation_failed_error_code(): void
+    {
+        $result = OperationResult::validationFailed('Bad input');
+
+        $this->assertTrue($result->isValidationFailed());
+        $this->assertFalse($result->isNotFound());
+        $this->assertFalse($result->isUnauthorized());
+    }
+
+    public function test_type_checking_methods_return_false_for_success_result(): void
+    {
+        $result = OperationResult::success();
+
+        $this->assertFalse($result->isNotFound());
+        $this->assertFalse($result->isUnauthorized());
+        $this->assertFalse($result->isValidationFailed());
+    }
+
+    public function test_get_or_throw_returns_model_on_success(): void
+    {
+        $model = $this->makeModel();
+        $result = OperationResult::created($model);
+
+        $this->assertSame($model, $result->getOrThrow());
+    }
+
+    public function test_get_or_throw_returns_data_when_no_model(): void
+    {
+        $result = OperationResult::deleted();
+
+        $this->assertSame([], $result->getOrThrow());
+    }
+
+    public function test_get_or_throw_throws_on_failure(): void
+    {
+        $result = OperationResult::failure('Something went wrong');
+
+        $this->expectException(\RuntimeException::class);
+        $this->expectExceptionMessage('Something went wrong');
+
+        $result->getOrThrow();
+    }
+
+    public function test_with_message_returns_new_instance_with_updated_message(): void
+    {
+        $model = $this->makeModel();
+        $original = OperationResult::created($model, 'Original message');
+        $updated = $original->withMessage('Updated message');
+
+        $this->assertNotSame($original, $updated);
+        $this->assertSame('Original message', $original->getMessage());
+        $this->assertSame('Updated message', $updated->getMessage());
+        $this->assertTrue($updated->succeeded());
+        $this->assertSame($model, $updated->getModel());
+    }
+
+    public function test_with_message_preserves_error_code_and_data(): void
+    {
+        $result = OperationResult::failure('Original', 'NOT_FOUND', ['key' => 'val']);
+        $updated = $result->withMessage('New message');
+
+        $this->assertSame('NOT_FOUND', $updated->getErrorCode());
+        $this->assertSame(['key' => 'val'], $updated->getData());
+        $this->assertFalse($updated->succeeded());
+    }
 }

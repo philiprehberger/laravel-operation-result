@@ -53,6 +53,56 @@ abstract class Result implements ResultContract
     }
 
     /**
+     * Check if the error code is NOT_FOUND.
+     */
+    public function isNotFound(): bool
+    {
+        return $this->errorCode === 'NOT_FOUND';
+    }
+
+    /**
+     * Check if the error code is UNAUTHORIZED.
+     */
+    public function isUnauthorized(): bool
+    {
+        return $this->errorCode === 'UNAUTHORIZED';
+    }
+
+    /**
+     * Check if the error code is VALIDATION_FAILED.
+     */
+    public function isValidationFailed(): bool
+    {
+        return $this->errorCode === 'VALIDATION_FAILED';
+    }
+
+    /**
+     * Get the result data or throw on failure.
+     *
+     * @throws \RuntimeException
+     */
+    public function getOrThrow(): mixed
+    {
+        if ($this->failed()) {
+            throw new \RuntimeException($this->message);
+        }
+
+        return null;
+    }
+
+    /**
+     * Return a new instance with the updated message.
+     */
+    public function withMessage(string $message): static
+    {
+        return new static(
+            success: $this->success,
+            message: $message,
+            errorCode: $this->errorCode,
+        );
+    }
+
+    /**
      * Convert the result to an array.
      */
     public function toArray(): array
