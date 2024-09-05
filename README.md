@@ -3,6 +3,7 @@
 [![Tests](https://github.com/philiprehberger/laravel-operation-result/actions/workflows/tests.yml/badge.svg)](https://github.com/philiprehberger/laravel-operation-result/actions/workflows/tests.yml)
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/philiprehberger/laravel-operation-result.svg)](https://packagist.org/packages/philiprehberger/laravel-operation-result)
 [![License](https://img.shields.io/github/license/philiprehberger/laravel-operation-result)](LICENSE)
+[![Sponsor](https://img.shields.io/badge/sponsor-GitHub%20Sponsors-ec6cb9)](https://github.com/sponsors/philiprehberger)
 
 Typed Result pattern for Laravel service-layer operations with named factory methods and specialized result types.
 
