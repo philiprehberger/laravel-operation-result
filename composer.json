@@ -1,0 +1,37 @@
+{
+    "name": "philiprehberger/laravel-operation-result",
+    "description": "Typed Result pattern for Laravel service-layer operations with named factory methods and specialized result types.",
+    "keywords": ["laravel", "result", "operation", "service", "pattern", "response"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Philip Rehberger",
+            "email": "philip@scopeforged.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "illuminate/database": "^11.0|^12.0",
+        "illuminate/support": "^11.0|^12.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^9.0|^10.0",
+        "phpunit/phpunit": "^11.0",
+        "laravel/pint": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "PhilipRehberger\\OperationResult\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "PhilipRehberger\\OperationResult\\Tests\\": "tests/"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true
+    }
+}
