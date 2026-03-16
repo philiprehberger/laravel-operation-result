@@ -544,17 +544,13 @@ public function logResult(ResultContract $result): void
 
 ---
 
-## Running Tests
+## Development
 
 ```bash
 composer install
 vendor/bin/phpunit
-```
-
-To also check code style:
-
-```bash
 vendor/bin/pint --test
+vendor/bin/phpstan analyse
 ```
 
 ## License

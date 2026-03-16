@@ -2,7 +2,9 @@
     "name": "philiprehberger/laravel-operation-result",
     "description": "Typed Result pattern for Laravel service-layer operations with named factory methods and specialized result types.",
     "keywords": ["laravel", "result", "operation", "service", "pattern", "response"],
+    "type": "library",
     "license": "MIT",
+    "homepage": "https://github.com/philiprehberger/laravel-operation-result",
     "authors": [
         {
             "name": "Philip Rehberger",
@@ -28,6 +30,11 @@
         "psr-4": {
             "PhilipRehberger\\OperationResult\\Tests\\": "tests/"
         }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "lint": "vendor/bin/pint",
+        "analyse": "vendor/bin/phpstan analyse"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
