@@ -1,0 +1,265 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\BulkActionResult\:\:__construct\(\) has parameter \$details with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/BulkActionResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\BulkActionResult\:\:failure\(\) has parameter \$details with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/BulkActionResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\BulkActionResult\:\:getFailedIds\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/BulkActionResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\BulkActionResult\:\:getSuccessIds\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/BulkActionResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\BulkActionResult\:\:partial\(\) has parameter \$details with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/BulkActionResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\BulkActionResult\:\:success\(\) has parameter \$details with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/BulkActionResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\BulkActionResult\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/BulkActionResult.php
+
+		-
+			message: '#^Unsafe usage of new static\(\)\.$#'
+			identifier: new.static
+			count: 3
+			path: src/BulkActionResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\CollectionResult\:\:__construct\(\) has parameter \$items with generic class Illuminate\\Support\\Collection but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/CollectionResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\CollectionResult\:\:__construct\(\) has parameter \$items with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/CollectionResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\CollectionResult\:\:__construct\(\) has parameter \$items with no value type specified in iterable type array\|Illuminate\\Support\\Collection\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/CollectionResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\CollectionResult\:\:getItems\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/CollectionResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\CollectionResult\:\:getItems\(\) return type has no value type specified in iterable type array\|Illuminate\\Support\\Collection\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/CollectionResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\CollectionResult\:\:getItems\(\) return type with generic class Illuminate\\Support\\Collection does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/CollectionResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\CollectionResult\:\:paginated\(\) has parameter \$items with generic class Illuminate\\Support\\Collection but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/CollectionResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\CollectionResult\:\:paginated\(\) has parameter \$items with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/CollectionResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\CollectionResult\:\:paginated\(\) has parameter \$items with no value type specified in iterable type array\|Illuminate\\Support\\Collection\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/CollectionResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\CollectionResult\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/CollectionResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\CollectionResult\:\:withItems\(\) has parameter \$items with generic class Illuminate\\Support\\Collection but does not specify its types\: TKey, TValue$#'
+			identifier: missingType.generics
+			count: 1
+			path: src/CollectionResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\CollectionResult\:\:withItems\(\) has parameter \$items with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/CollectionResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\CollectionResult\:\:withItems\(\) has parameter \$items with no value type specified in iterable type array\|Illuminate\\Support\\Collection\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/CollectionResult.php
+
+		-
+			message: '#^Unsafe usage of new static\(\)\.$#'
+			identifier: new.static
+			count: 4
+			path: src/CollectionResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\Contracts\\ResultContract\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Contracts/ResultContract.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\OperationResult\:\:__construct\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/OperationResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\OperationResult\:\:failure\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/OperationResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\OperationResult\:\:getData\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/OperationResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\OperationResult\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/OperationResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\OperationResult\:\:validationFailed\(\) has parameter \$errors with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/OperationResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\OperationResult\:\:withData\(\) has parameter \$data with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/OperationResult.php
+
+		-
+			message: '#^Unsafe usage of new static\(\)\.$#'
+			identifier: new.static
+			count: 9
+			path: src/OperationResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\RateLimitResult\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/RateLimitResult.php
+
+		-
+			message: '#^Unsafe usage of new static\(\)\.$#'
+			identifier: new.static
+			count: 2
+			path: src/RateLimitResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\Result\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/Result.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\UndoResult\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/UndoResult.php
+
+		-
+			message: '#^Unsafe usage of new static\(\)\.$#'
+			identifier: new.static
+			count: 3
+			path: src/UndoResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\ValidationResult\:\:__construct\(\) has parameter \$errors with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ValidationResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\ValidationResult\:\:__construct\(\) has parameter \$warnings with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ValidationResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\ValidationResult\:\:getErrors\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ValidationResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\ValidationResult\:\:getWarnings\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ValidationResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\ValidationResult\:\:invalid\(\) has parameter \$errors with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ValidationResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\ValidationResult\:\:invalid\(\) has parameter \$warnings with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ValidationResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\ValidationResult\:\:toArray\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ValidationResult.php
+
+		-
+			message: '#^Method PhilipRehberger\\OperationResult\\ValidationResult\:\:valid\(\) has parameter \$warnings with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: src/ValidationResult.php
+
+		-
+			message: '#^Unsafe usage of new static\(\)\.$#'
+			identifier: new.static
+			count: 3
+			path: src/ValidationResult.php
