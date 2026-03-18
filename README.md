@@ -4,7 +4,7 @@
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/philiprehberger/laravel-operation-result.svg)](https://packagist.org/packages/philiprehberger/laravel-operation-result)
 [![License](https://img.shields.io/github/license/philiprehberger/laravel-operation-result)](LICENSE)
 
-A typed Result pattern for Laravel service-layer operations. Each service method returns a strongly-typed result object instead of throwing exceptions for predictable failures — making controllers simpler and business logic easier to test.
+Typed Result pattern for Laravel service-layer operations with named factory methods and specialized result types.
 
 ## Requirements
 
