@@ -1,10 +1,10 @@
 # Laravel Operation Result
 
-A typed Result pattern for Laravel service-layer operations. Each service method returns a strongly-typed result object instead of throwing exceptions for predictable failures — making controllers simpler and business logic easier to test.
-
 [![Tests](https://github.com/philiprehberger/laravel-operation-result/actions/workflows/tests.yml/badge.svg)](https://github.com/philiprehberger/laravel-operation-result/actions/workflows/tests.yml)
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/philiprehberger/laravel-operation-result.svg)](https://packagist.org/packages/philiprehberger/laravel-operation-result)
-[![License](https://img.shields.io/github/license/philiprehberger/laravel-operation-result.svg)](LICENSE)
+[![License](https://img.shields.io/github/license/philiprehberger/laravel-operation-result)](LICENSE)
+
+Typed Result pattern for Laravel service-layer operations with named factory methods and specialized result types.
 
 ## Requirements
 
@@ -544,21 +544,29 @@ public function logResult(ResultContract $result): void
 
 ---
 
-## Running Tests
+## API
+
+| Class | Use Case |
+|-------|---------|
+| `OperationResult` | Model CRUD operations (create, update, delete) |
+| `BulkActionResult` | Operations on multiple items at once |
+| `CollectionResult` | Service methods returning lists or paginated data |
+| `ValidationResult` | Data and template validation with errors and warnings |
+| `RateLimitResult` | API rate limit checks with HTTP header generation |
+| `UndoResult` | Undo operations tracking restored vs failed items |
+
+All classes implement `ResultContract`: `succeeded()`, `failed()`, `getMessage()`, `toArray()`.
+
+## Development
 
 ```bash
 composer install
 vendor/bin/phpunit
-```
-
-To also check code style:
-
-```bash
 vendor/bin/pint --test
+vendor/bin/phpstan analyse
 ```
 
 ## License
 
-MIT License. See [LICENSE](LICENSE) for details.
-
+MIT
 
