@@ -19,7 +19,9 @@ composer require philiprehberger/laravel-operation-result
 
 No service provider registration is needed. The classes are ready to use immediately.
 
-## Why Use This?
+## Usage
+
+### Why Use This?
 
 Without a result pattern, service methods either throw exceptions for every failure or return ambiguous booleans/nulls that force controllers to guess what went wrong. Result objects make the contract explicit:
 
@@ -37,7 +39,7 @@ public function createClient(array $data): OperationResult
 }
 ```
 
-## Available Result Types
+### Available Result Types
 
 | Class | Use Case |
 |---|---|
@@ -50,13 +52,11 @@ public function createClient(array $data): OperationResult
 
 All classes implement `ResultContract` and extend the abstract `Result` base class.
 
----
-
-## OperationResult
+### OperationResult
 
 Use when a service method creates, reads, updates, or deletes an Eloquent model.
 
-### Service
+#### Service
 
 ```php
 use PhilipRehberger\OperationResult\OperationResult;
@@ -102,7 +102,7 @@ class ClientService
 }
 ```
 
-### Controller
+#### Controller
 
 ```php
 public function store(StoreClientRequest $request, ClientService $service): JsonResponse
@@ -121,7 +121,7 @@ public function store(StoreClientRequest $request, ClientService $service): Json
 }
 ```
 
-### Factory Methods
+#### Factory Methods
 
 | Method | Description |
 |---|---|
@@ -134,7 +134,7 @@ public function store(StoreClientRequest $request, ClientService $service): Json
 | `OperationResult::validationFailed($message, $errors)` | Validation failure, error code `VALIDATION_FAILED` |
 | `OperationResult::unauthorized($message)` | Auth failure, error code `UNAUTHORIZED` |
 
-### Additional Methods
+#### Additional Methods
 
 ```php
 $result->getModel();         // ?Model
@@ -144,13 +144,11 @@ $result->getErrorCode();     // ?string
 $result->toArray();          // array
 ```
 
----
-
-## BulkActionResult
+### BulkActionResult
 
 Use when operating on multiple items at once, such as bulk-deleting, bulk-archiving, or bulk-updating a set of records.
 
-### Service
+#### Service
 
 ```php
 use PhilipRehberger\OperationResult\BulkActionResult;
@@ -193,7 +191,7 @@ class BulkClientService
 }
 ```
 
-### Controller
+#### Controller
 
 ```php
 public function bulkArchive(BulkArchiveRequest $request, BulkClientService $service): JsonResponse
@@ -206,7 +204,7 @@ public function bulkArchive(BulkArchiveRequest $request, BulkClientService $serv
 }
 ```
 
-### Factory Methods
+#### Factory Methods
 
 | Method | Description |
 |---|---|
@@ -214,7 +212,7 @@ public function bulkArchive(BulkArchiveRequest $request, BulkClientService $serv
 | `BulkActionResult::partial($processed, $failed, $message, $details, $undoToken, $undoExpiresAt)` | Mixed results |
 | `BulkActionResult::failure($message, $errorCode, $details)` | Complete failure |
 
-### Additional Methods
+#### Additional Methods
 
 ```php
 $result->hasFailures();     // bool — true if any items failed
@@ -224,13 +222,11 @@ $result->getSuccessIds();   // array — IDs from details where success === true
 $result->canUndo();         // bool — true if undoToken is set
 ```
 
----
-
-## CollectionResult
+### CollectionResult
 
 Use when a service method returns a list of items, with or without pagination.
 
-### Service
+#### Service
 
 ```php
 use PhilipRehberger\OperationResult\CollectionResult;
@@ -268,7 +264,7 @@ class ProjectService
 }
 ```
 
-### Controller
+#### Controller
 
 ```php
 public function index(Request $request, ProjectService $service): JsonResponse
@@ -286,7 +282,7 @@ public function index(Request $request, ProjectService $service): JsonResponse
 }
 ```
 
-### Factory Methods
+#### Factory Methods
 
 | Method | Description |
 |---|---|
@@ -295,7 +291,7 @@ public function index(Request $request, ProjectService $service): JsonResponse
 | `CollectionResult::empty($message)` | Success with zero items |
 | `CollectionResult::failure($message, $errorCode)` | Failure |
 
-### Additional Methods
+#### Additional Methods
 
 ```php
 $result->getItems();   // Collection|array
@@ -305,13 +301,11 @@ $result->isEmpty();    // bool
 $result->hasMore();    // bool — true when more pages exist
 ```
 
----
-
-## ValidationResult
+### ValidationResult
 
 Use when a service or class validates data, tracking both hard errors (blocking) and soft warnings (advisory).
 
-### Service
+#### Service
 
 ```php
 use PhilipRehberger\OperationResult\ValidationResult;
@@ -340,7 +334,7 @@ class InvoiceTemplateValidator
 }
 ```
 
-### Controller
+#### Controller
 
 ```php
 public function validateTemplate(Request $request, InvoiceTemplateValidator $validator): JsonResponse
@@ -353,7 +347,7 @@ public function validateTemplate(Request $request, InvoiceTemplateValidator $val
 }
 ```
 
-### Factory Methods
+#### Factory Methods
 
 | Method | Description |
 |---|---|
@@ -361,7 +355,7 @@ public function validateTemplate(Request $request, InvoiceTemplateValidator $val
 | `ValidationResult::invalid($errors, $warnings)` | Fails with errors, optional warnings |
 | `ValidationResult::failure($message, $errorCode)` | Unexpected failure (not a validation error) |
 
-### Additional Methods
+#### Additional Methods
 
 ```php
 $result->isValid();       // bool
@@ -371,13 +365,11 @@ $result->getErrors();     // array
 $result->getWarnings();   // array
 ```
 
----
-
-## RateLimitResult
+### RateLimitResult
 
 Use when checking or enforcing API rate limits. Provides typed results and generates standard HTTP rate-limit response headers.
 
-### Service
+#### Service
 
 ```php
 use PhilipRehberger\OperationResult\RateLimitResult;
@@ -409,7 +401,7 @@ class ApiRateLimiter
 }
 ```
 
-### Middleware
+#### Middleware
 
 ```php
 public function handle(Request $request, Closure $next): Response
@@ -428,14 +420,14 @@ public function handle(Request $request, Closure $next): Response
 }
 ```
 
-### Factory Methods
+#### Factory Methods
 
 | Method | Description |
 |---|---|
 | `RateLimitResult::allowed($limit, $remaining, $resetAt)` | Request is within limit |
 | `RateLimitResult::denied($limit, $resetAt, $retryAfter)` | Limit exceeded, error code `RATE_LIMITED` |
 
-### Additional Methods
+#### Additional Methods
 
 ```php
 $result->isAllowed();   // bool
@@ -443,13 +435,11 @@ $result->isDenied();    // bool
 $result->getHeaders();  // array<string, string> — X-RateLimit-* headers, plus Retry-After when denied
 ```
 
----
-
-## UndoResult
+### UndoResult
 
 Use when reversing a previous bulk operation, tracking how many items were restored successfully vs how many failed.
 
-### Service
+#### Service
 
 ```php
 use PhilipRehberger\OperationResult\UndoResult;
@@ -490,7 +480,7 @@ class UndoService
 }
 ```
 
-### Controller
+#### Controller
 
 ```php
 public function undo(string $token, UndoService $service): JsonResponse
@@ -503,7 +493,7 @@ public function undo(string $token, UndoService $service): JsonResponse
 }
 ```
 
-### Factory Methods
+#### Factory Methods
 
 | Method | Description |
 |---|---|
@@ -511,15 +501,13 @@ public function undo(string $token, UndoService $service): JsonResponse
 | `UndoResult::partial($restored, $failed, $message)` | Mixed results |
 | `UndoResult::failure($message, $errorCode)` | Complete failure |
 
-### Additional Methods
+#### Additional Methods
 
 ```php
 $result->hasFailures();  // bool — true if any items could not be restored
 ```
 
----
-
-## The ResultContract Interface
+### The ResultContract Interface
 
 All result types implement `PhilipRehberger\OperationResult\Contracts\ResultContract`:
 
@@ -541,8 +529,6 @@ public function logResult(ResultContract $result): void
     Log::info($result->getMessage(), $result->toArray());
 }
 ```
-
----
 
 ## API
 
